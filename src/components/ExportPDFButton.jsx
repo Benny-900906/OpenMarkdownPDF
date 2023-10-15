@@ -1,13 +1,18 @@
-export const ExportPDFButton = () => {
+import { useExportToPDF } from '../hooks/useExportToPDF';
 
-  const handleExport = (e) => {
+export const ExportPDFButton = ({ renderedContent }) => {
+
+  const { exportToPDF, setFilename } = useExportToPDF();
+
+  const handleExportClick = (e) => {
     e.preventDefault();
-    // ... Export to PDF Logic
+    // triggers a modal that asks for the filename
+    exportToPDF(renderedContent);
   }
 
   return (
     <>
-      <button className="font-bold text-[#204029] text-md bg-[#D9D9D9] rounded-lg px-6 hover:cursor-pointer hover:scale-105 hover:bg-[#ECECEC]" onClick={handleExport}>EXPORT</button>
+      <button className="font-bold text-[#204029] text-md bg-[#D9D9D9] rounded-lg px-6 hover:cursor-pointer hover:scale-105 hover:bg-[#ECECEC]" onClick={handleExportClick}>EXPORT</button>
     </>
   );
 }

@@ -10,7 +10,7 @@ export const Markdown = () => {
   return (
     <>
       <div className="w-screen h-screen bg-[#000000] relative">
-        <NavBar />
+        <NavBar renderedContent={renderedContent} />
         <div className="w-full h-full bg-white pt-16 flex flex-row">
           <MarkdownPanel setRenderedContent={setRenderedContent} />
           <LiveRenderingPanel renderedContent={renderedContent} />
