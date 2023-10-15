@@ -23,6 +23,8 @@ export const useMarkdownToHTML = (markdown) => {
       } else if (/\*\*([^*]+)\*\*/.test(line)) {
         text = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         html = <p className='text-black' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>
+      } else if (line.length === 0) {
+        html = <br />
       } else {
         html = <p className='text-black' key={nanoid()}>{line}</p>;
       }
