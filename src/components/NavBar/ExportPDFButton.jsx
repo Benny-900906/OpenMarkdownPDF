@@ -1,7 +1,10 @@
-import { useExportToPDF } from '../hooks/useExportToPDF';
+import { useExportToPDF } from '../../hooks/useExportToPDF';
+import { useRenderedContentStore } from '../../stores/useRenderedContentStore';
 
-export const ExportPDFButton = ({ renderedContent }) => {
+export const ExportPDFButton = () => {
 
+  const renderedContent = useRenderedContentStore((state) => state.renderedContent);
+  
   const { exportToPDF, setFilename } = useExportToPDF();
 
   const handleExportClick = (e) => {

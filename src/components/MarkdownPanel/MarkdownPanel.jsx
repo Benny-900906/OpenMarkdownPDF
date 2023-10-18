@@ -1,12 +1,14 @@
-import { LineNumber } from './MarkdownComponents/LineNumber';
+import { LineNumber } from './LineNumber';
 import { useState, useEffect } from 'react';
-import { useMarkdownToHTML } from '../hooks/useMarkdownToHTML';
+import { useMarkdownToHTML } from '../../hooks/useMarkdownToHTML';
+import { useRenderedContentStore } from '../../stores/useRenderedContentStore';
 
-export const MarkdownPanel = ({ setRenderedContent }) => {
+export const MarkdownPanel = () => {
 
   const [scrollTop, setScrollTop] = useState(0);
   const [markdownContent, setMarkdownContent] = useState('');
   const renderedContent = useMarkdownToHTML(markdownContent);
+  const setRenderedContent = useRenderedContentStore((state) => state.setRenderedContent);
 
   useEffect(() => {
     setRenderedContent(renderedContent);
