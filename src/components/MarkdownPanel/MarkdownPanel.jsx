@@ -24,15 +24,18 @@ export const MarkdownPanel = () => {
 
   return (
     <>
-      <div className="w-[50%] h-full bg-[#1B1B1B] overflow-y-hidden flex flex-row px-2">
-        <LineNumber text={markdownContent} scrollTop={scrollTop} />
-        <textarea
-          className="resize-none w-full h-full focus:outline-none px-2 bg-[#1B1B1B] overflow-y-scroll"
-          value={markdownContent}
-          onChange={handleMarkdownChange}
-          onScroll={handleTextareaScroll}
-          placeholder=""
-        ></textarea>
+      <div className="w-[50%] h-full overflow-y-hidden flex flex-col">
+        <span className="block w-full px-3 py-2 text-[#000000] border text-xs font-thin">MARKDOWN</span>
+        <div className="w-full h-full overflow-y-hidden flex flex-row">
+          <LineNumber text={markdownContent} scrollTop={scrollTop} />
+          <textarea
+            className="resize-none w-full h-full focus:outline-none px-2 bg-[#1B1B1B] overflow-y-scroll"
+            value={markdownContent}
+            onChange={handleMarkdownChange}
+            onScroll={handleTextareaScroll}
+            placeholder=""
+          ></textarea>
+        </div>
       </div>
     </>
   );

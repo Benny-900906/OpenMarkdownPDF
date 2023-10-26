@@ -5,9 +5,13 @@ export const LiveRenderingPanel = () => {
 
   return (
     <>
-      <div className="w-[50%] h-full bg-[#D9D9D9] px-2 overflow-y-scroll">
-        {renderedContent}
+      <div className="w-[50%] h-full overflow-y-hidden flex flex-col">
+        <span className="block w-full px-3 py-2 text-[#000000] border text-xs font-thin text-right">PREVIEW</span>
+        <div className="w-full h-full px-2 overflow-y-scroll">
+          {renderedContent}
+        </div>
       </div>
+      
     </>
   );
 }

@@ -7,7 +7,7 @@ export const Markdown = () => {
     <>
       <div className="w-screen h-screen bg-[#000000] relative">
         <NavBar />
-        <div className="w-full h-full bg-white pt-16 flex flex-row">
+        <div className="w-full h-full bg-white flex flex-row pt-40">
           <MarkdownPanel />
           <LiveRenderingPanel />
         </div>
