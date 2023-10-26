@@ -6,3 +6,7 @@
 
 /* Add utility classes from Tailwind CSS */
 @import 'tailwindcss/utilities';
+
+ul {
+  list-style: inside;
+}
