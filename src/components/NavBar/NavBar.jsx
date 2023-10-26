@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useRenderedContentStore } from '../../stores/useRenderedContentStore';
+import { useReadingTime } from '../../hooks/useReadingTime';
+import { useWordCount } from '../../hooks/useWordCount';
+import { useCharCount } from '../../hooks/useCharCount';
 
 export const NavBar = () => {
 
   const renderedContent = useRenderedContentStore((state) => state.renderedContent);
   const [docName, setDocName] = useState("untitled");
-  const [readingTime, setReadingTime] = useState(0);
-  const [numOfWords, setNumOfWords] = useState(0);
-  const [numOfChars, setNumOfChars] = useState(0);
+  const readingTime = useReadingTime(renderedContent);
+  const wordCount = useWordCount(renderedContent);
+  const charCount = useCharCount(renderedContent);
 
   const handleDocNameChange = (e) => {
     setDocName(e.target.value);
@@ -48,8 +51,8 @@ export const NavBar = () => {
         {/* reading time, words, characters */}
         <div className="w-[15%] flex flex-wrap gap-3">
           <span className="text-[#7b7b7b] text-xs font-thin">READING TIME: <span className="text-[#000000]">{readingTime}</span></span>
-          <span className="text-[#7b7b7b] text-xs font-thin">WORDS: <span className="text-[#000000]">{numOfWords}</span></span>
-          <span className="text-[#7b7b7b] text-xs font-thin">CHARACTERS: <span className="text-[#000000]">{numOfChars}</span></span>
+          <span className="text-[#7b7b7b] text-xs font-thin">WORDS: <span className="text-[#000000]">{wordCount}</span></span>
+          <span className="text-[#7b7b7b] text-xs font-thin">CHARACTERS: <span className="text-[#000000]">{charCount}</span></span>
         </div>
       </div>
      </div>
