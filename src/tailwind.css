@@ -7,6 +7,10 @@
 /* Add utility classes from Tailwind CSS */
 @import 'tailwindcss/utilities';
 
+/* Add Kanit, Sans-serif font styles into Tailwind CSS */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,400;0,600;1,200&display=swap');
+
+/* Normalize unordered list style */
 ul {
   list-style: inside;
 }

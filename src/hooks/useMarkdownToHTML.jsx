@@ -37,36 +37,36 @@ export const useMarkdownToHTML = (markdown) => {
       if (line.startsWith('# ')) {
         // heading 1
         text = line.replace('# ', '');
-        html = <h1 className='text-black font-semibold text-3xl' key={nanoid()}>{text}</h1>
+        html = <h1 className='font-custom text-black font-semibold text-3xl' key={nanoid()}>{text}</h1>
       } else if (line.startsWith('## ')) {
         // heading 2
         text = line.replace('## ', '');
-        html = <h2 className='text-black font-semibold text-2xl' key={nanoid()}>{text}</h2>;
+        html = <h2 className='font-custom text-black font-semibold text-2xl' key={nanoid()}>{text}</h2>;
       } else if (line.startsWith('### ')) {
         // heading 3
         text = line.replace('### ', '');
-        html = <h3 className='text-black font-semibold text-xl' key={nanoid()}>{text}</h3>
+        html = <h3 className='font-custom text-black font-semibold text-xl' key={nanoid()}>{text}</h3>
       } else if (/\*\*([^*]+)\*\*/.test(line)) {
         // bold text
-        text = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        html = <p className='text-black font-normal text-base' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>
+        text = line.replace(/\*\*(.*?)\*\*/g, '<strong className="font-normal">$1</strong>');
+        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>
       } else if (/\*([^*]+)\*/.test(line)) {
         // italic text
         text = line.replace(/\*(.*?)\*/g, '<em>$1</em>');
-        html = <p className='text-black font-normal text-base' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>
+        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>
       } else if (line.length === 0) {
         html = <br />
       } else if (line.startsWith('- ')) {
 
         text = line.replace('- ', '');
-        html = <li className='text-black font-normal text-base' key={nanoid()}>{text}</li>
+        html = <li className='font-custom text-black font-extralight text-base' key={nanoid()}>{text}</li>
         listItems.push(html);
 
         // we push to listItems not result
         doNotPushToResult = true;
 
       } else {
-        html = <p className='text-black font-normal text-base' key={nanoid()}>{line}</p>;
+        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()}>{line}</p>;
       }
         
       if (doNotPushToResult) {

@@ -6,7 +6,12 @@ export default {
     // Add more file types as needed
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily : {
+        // Access: font-custom
+        custom: ['Kanit', 'sans-serif'],
+      }
+    },
   },
   plugins: [
     require("daisyui"),
