@@ -15,21 +15,27 @@ export const useMarkdownToHTML = (markdown) => {
   }
 
   // Future plan: modify the code so that it accepts multiple markdown syntaxs in a single line
+  // Future plan: make a functional component for each rendered content (e.g., Heading1, Heading2, CommandLinePrompt, Bold, List, etc.,)
   useEffect(() => {
 
     const lines = markdown.split('\n');
     let result = [];
     let text = '';
     let html = <></>;
+
+    // for list handling
     let listItems = null;
     let moreListItems = false;
-    let doNotPushToResult = false;
 
+    // for command line handling
+    let commandItems = null;
+    let moreCommandItems = false;
+
+    let doNotPushToResult = false;
 
     lines.forEach(line => {
 
       // ******************************** LIST HANDLING ********************************
-
       moreListItems = (line.startsWith('- ')) ? true : false;
 
       if (moreListItems && listItems === null) {
@@ -39,16 +45,44 @@ export const useMarkdownToHTML = (markdown) => {
       // we now push em and make them into an <ul>
       } else if (!moreListItems && listItems !== null) {
         // push ul into result
-        const unorderedList = <ul className="list-disc">{ listItems }</ul>;
-
+        const unorderedList = <ul>{ listItems }</ul>;
         result.push(unorderedList);
         listItems = null;
       } 
-
       // ******************************** LIST HANDLING ********************************
 
+      
+      // ******************************** COMMAND LINE HANDLING ************************
+      if (line.startsWith('```')) {
+        // toggle moreCommandItems (first ``` -> start reading command line elements, second ``` -> done reading command line elements)
+        moreCommandItems = !moreCommandItems;
+      }
 
+      // read the first ```, start reading all the command line texts
+      if (moreCommandItems && commandItems === null) {
+        commandItems = [];
+        doNotPushToResult = true;
 
+      // read the second ```, done reading all the code texts
+      } else if (!moreCommandItems && commandItems !== null) {
+        html = 
+          <div className='bg-[#e9e9e9] px-2 py-1 rounded-lg border-2 border-[#c0c0c0]'>
+            { commandItems }
+          </div>;
+        result.push(html);
+        doNotPushToResult = true;
+        // reset commandItems list to null
+        commandItems = null;
+
+      // continue reading the command line texts
+      } else if (moreCommandItems && commandItems !== null) {
+        html = isWhiteSpace(line) ? <br /> : <code key={nanoid()} className='block text-[#535353] font-normal text-sm'>{`$ ${line}`}</code>;
+        commandItems?.push(html)
+        doNotPushToResult = true; 
+      }
+      // ******************************** COMMAND LINE HANDLING ************************
+
+      
       if (line.startsWith('# ')) {
 
         // heading 1
