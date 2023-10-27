@@ -14,8 +14,9 @@ export const useMarkdownToHTML = (markdown) => {
     return true; // The line consists of only white spaces
   }
 
+  // Future plan: modify the code so that it accepts multiple markdown syntaxs in a single line
   useEffect(() => {
-    
+
     const lines = markdown.split('\n');
     let result = [];
     let text = '';
@@ -23,6 +24,7 @@ export const useMarkdownToHTML = (markdown) => {
     let listItems = null;
     let moreListItems = false;
     let doNotPushToResult = false;
+
 
     lines.forEach(line => {
 
@@ -44,6 +46,8 @@ export const useMarkdownToHTML = (markdown) => {
       } 
 
       // ******************************** LIST HANDLING ********************************
+
+
 
       if (line.startsWith('# ')) {
 
@@ -75,12 +79,37 @@ export const useMarkdownToHTML = (markdown) => {
         text = line.replace(/\*(.*?)\*/g, '<em>$1</em>');
         html = <p className='font-custom text-black font-extralight text-base' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>;
 
+      } else if (/\[.*\]\(.*\)/.test(line)) {
+
+        // link text
+        const parts = line.split(/\[([^\]]+)\]\(([^)]+)\)/g);
+        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()}>
+          {
+            parts.map((part, index) => {
+              if (index % 3 == 0) {
+                // regular text
+                return part;
+              } else if (index % 3 == 1) {
+                // link text
+                return <a 
+                  key={index} 
+                  href={parts[index + 1]} 
+                  target='_blank' 
+                  className='text-[#5087ff] underline'
+                >{ part }</a>;
+              }
+            })
+          }
+        </p>;
+
       } else if (line.length === 0 || isWhiteSpace(line)) {
 
+        // empty line
         html = <br />;
 
       } else if (line.startsWith('- ')) {
 
+        // list elements
         text = line.replace('- ', '');
         html = <li className='font-custom text-black font-extralight text-base' key={nanoid()}>{ text }</li>;
         listItems.push(html);
@@ -90,6 +119,7 @@ export const useMarkdownToHTML = (markdown) => {
 
       } else {
 
+        // regular text
         html = <p className='font-custom text-black font-extralight text-base' key={nanoid()}>{ line }</p>;
 
       }
