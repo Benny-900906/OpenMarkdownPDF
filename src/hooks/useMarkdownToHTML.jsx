@@ -4,7 +4,18 @@ import { nanoid } from 'nanoid';
 export const useMarkdownToHTML = (markdown) => {
   const [renderedContent, setRenderedContent] = useState([]);
 
+  // Check if a line consists of only white spaces
+  const isWhiteSpace = (line) => {
+    for (let i = 0; i < line.length; i++) {
+      if (line[i] !== ' ' && line[i] !== '\t' && line[i] !== '\n' && line[i] !== '\r') {
+        return false; // The line contains a non-white space character
+      }
+    }
+    return true; // The line consists of only white spaces
+  }
+
   useEffect(() => {
+    
     const lines = markdown.split('\n');
     let result = [];
     let text = '';
@@ -26,7 +37,7 @@ export const useMarkdownToHTML = (markdown) => {
       // we now push em and make them into an <ul>
       } else if (!moreListItems && listItems !== null) {
         // push ul into result
-        const unorderedList = <ul className="list-disc">{listItems}</ul>;
+        const unorderedList = <ul className="list-disc">{ listItems }</ul>;
 
         result.push(unorderedList);
         listItems = null;
@@ -35,50 +46,68 @@ export const useMarkdownToHTML = (markdown) => {
       // ******************************** LIST HANDLING ********************************
 
       if (line.startsWith('# ')) {
+
         // heading 1
         text = line.replace('# ', '');
-        html = <h1 className='font-custom text-black font-semibold text-3xl' key={nanoid()}>{text}</h1>
+        html = <h1 className='font-custom text-black font-semibold text-3xl' key={nanoid()}>{ text }</h1>;
+
       } else if (line.startsWith('## ')) {
+
         // heading 2
         text = line.replace('## ', '');
-        html = <h2 className='font-custom text-black font-semibold text-2xl' key={nanoid()}>{text}</h2>;
+        html = <h2 className='font-custom text-black font-semibold text-2xl' key={nanoid()}>{ text }</h2>;
+
       } else if (line.startsWith('### ')) {
+
         // heading 3
         text = line.replace('### ', '');
-        html = <h3 className='font-custom text-black font-semibold text-xl' key={nanoid()}>{text}</h3>
+        html = <h3 className='font-custom text-black font-semibold text-xl' key={nanoid()}>{ text }</h3>;
+
       } else if (/\*\*([^*]+)\*\*/.test(line)) {
+
         // bold text
         text = line.replace(/\*\*(.*?)\*\*/g, '<strong className="font-normal">$1</strong>');
-        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>
+        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>;
+
       } else if (/\*([^*]+)\*/.test(line)) {
+
         // italic text
         text = line.replace(/\*(.*?)\*/g, '<em>$1</em>');
-        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>
-      } else if (line.length === 0) {
-        html = <br />
+        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()} dangerouslySetInnerHTML={{ __html: text }}></p>;
+
+      } else if (line.length === 0 || isWhiteSpace(line)) {
+
+        html = <br />;
+
       } else if (line.startsWith('- ')) {
 
         text = line.replace('- ', '');
-        html = <li className='font-custom text-black font-extralight text-base' key={nanoid()}>{text}</li>
+        html = <li className='font-custom text-black font-extralight text-base' key={nanoid()}>{ text }</li>;
         listItems.push(html);
 
         // we push to listItems not result
         doNotPushToResult = true;
 
       } else {
-        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()}>{line}</p>;
+
+        html = <p className='font-custom text-black font-extralight text-base' key={nanoid()}>{ line }</p>;
+
       }
         
       if (doNotPushToResult) {
+
         doNotPushToResult = false;
+
       } else {
+
         result.push(html);
+
       }
     })
 
     setRenderedContent(result);
 
-  }, [markdown]);
+  }, [ markdown ]);
 
   return renderedContent;
 }

@@ -1,4 +1,5 @@
 import { useRenderedContentStore } from '../../stores/useRenderedContentStore';
+import { nanoid } from 'nanoid';
 
 export const LiveRenderingPanel = () => {
   const renderedContent = useRenderedContentStore((state) => state.renderedContent);
