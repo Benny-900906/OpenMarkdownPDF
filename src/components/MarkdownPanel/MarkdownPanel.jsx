@@ -1,25 +1,11 @@
 import { LineNumber } from './LineNumber';
-import { useState, useEffect } from 'react';
-import { useMarkdownToHTML } from '../../hooks/useMarkdownToHTML';
+import { useState } from 'react';
 import { useMarkdownContentStore } from '../../stores/useMarkdownContentStore';
-import { useRenderedContentStore } from '../../stores/useRenderedContentStore';
 
 export const MarkdownPanel = () => {
-  
   const [scrollTop, setScrollTop] = useState(0);
   const markdownContent = useMarkdownContentStore((state) => state.markdownContent);
   const setMarkdownContent = useMarkdownContentStore((state) => state.setMarkdownContent);
-
-  // move renderedContent, setRenderedContent, useEffect to LiveRenderingPanel,
-  // we could remove useRenderedContentStore, because the renderedContent state will only be used in the LiveRenderingPanel component
-  const renderedContent = useMarkdownToHTML(markdownContent);
-  const setRenderedContent = useRenderedContentStore((state) => state.setRenderedContent);
-
-  useEffect(() => {
-    setRenderedContent(renderedContent);
-  }, [renderedContent]);
-
-  
 
   const handleMarkdownChange = (e) => {
     setMarkdownContent(e.target.value);

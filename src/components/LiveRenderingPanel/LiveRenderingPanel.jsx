@@ -1,7 +1,15 @@
-import { useRenderedContentStore } from '../../stores/useRenderedContentStore';
+import { useState, useEffect } from 'react';
+import { useMarkdownContentStore } from '../../stores/useMarkdownContentStore';
+import { useMarkdownToHTML } from '../../hooks/useMarkdownToHTML';
 
 export const LiveRenderingPanel = () => {
-  const renderedContent = useRenderedContentStore((state) => state.renderedContent);
+  const [renderedContent, setRenderedContent] = useState([]);
+  const markdownContent = useMarkdownContentStore((state) => state.markdownContent);
+  const tempRenderedContent = useMarkdownToHTML(markdownContent);
+
+  useEffect(() => {
+    setRenderedContent(tempRenderedContent);
+  }, [ tempRenderedContent ])
 
   return (
     <div className="w-[50%] h-full overflow-y-hidden flex flex-col">
