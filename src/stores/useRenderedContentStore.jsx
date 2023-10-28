@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
 export const useRenderedContentStore = create((set) => ({
-  renderedContent: <></>,
+  renderedContent: [],
   setRenderedContent: (content) => set({ renderedContent: content }),
 }));
