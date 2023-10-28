@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
 // implement custom hook logic
-export const useWordCount = (renderedContent) => {
+export const useWordCount = (content) => {
   const [wordCount, setWordCount] = useState(0);
 
   useEffect(() => {
-
-  }, [renderedContent]);
+    
+  }, [content]);
 
   return wordCount;
 }

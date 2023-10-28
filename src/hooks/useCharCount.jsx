@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
 // implement custom hook logic
-export const useCharCount = (renderedContent) => {
+export const useCharCount = (content) => {
   const [charCount, setCharCount] = useState(0);
 
   useEffect(() => {
 
-  }, [renderedContent]);
+  }, [content]);
 
   return charCount;
 }

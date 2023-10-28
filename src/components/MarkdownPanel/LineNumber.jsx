@@ -1,5 +1,5 @@
-export const LineNumber = ({ text, scrollTop }) => {
-  const lines = text.split('\n');
+export const LineNumber = ({ content, scrollTop }) => {
+  const lines = content.split('\n');
 
   const lineNumberStyle = {
     marginTop: `-${scrollTop}px`,
