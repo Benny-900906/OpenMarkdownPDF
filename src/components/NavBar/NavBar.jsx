@@ -5,8 +5,7 @@ import { ContentStats } from './ContentStats';
 
 export const NavBar = () => {
   return (
-    <>
-     <div className="w-full absolute">
+    <div className="w-full absolute">
       <div className="w-full bg-[#465162] flex flex-row justify-between px-16 py-5">
         <Logo />
         <ExportButton />
@@ -16,7 +15,6 @@ export const NavBar = () => {
         <DocumentNameInput />
         <ContentStats />
       </div>
-     </div>
-    </>
+    </div>
   );
 }

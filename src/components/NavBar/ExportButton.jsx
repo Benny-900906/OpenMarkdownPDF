@@ -1,51 +1,33 @@
-import { useState, useEffect, useRef } from 'react';
-import { useRenderedContentStore } from '../../stores/useRenderedContentStore';
+import { useState } from 'react';
 import { useDocumentNameStore } from '../../stores/useDocumentNameStore';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 export const ExportButton = () => {
-  const [isFocused, setIsFocused] = useState(false);
-  // documentName: for export the document
+  const [isDownloading, setIsDownloading] = useState(false);
+  // documentName: for document exporting
   const documentName = useDocumentNameStore((state) => state.documentName);
-  const buttonRef = useRef(null);
-
-  // close the export options when clicking outside the `EXPORT AS` button 
-  useEffect(() => {
-    const handleOutOfFocusClick = (e) => {
-      if (buttonRef.current && !buttonRef.current.contains(e.target)) {
-        if (isFocused) {
-          setIsFocused(false);
-        }
-      }
-    }
-
-    document.addEventListener('click', handleOutOfFocusClick);
-
-    return () => {
-      document.addEventListener('click', handleOutOfFocusClick);
-    }
-  }, []);
-
-  const handleExportBtnClick = () => {
-    // toggle `EXPORT AS` button
-    setIsFocused(!isFocused);
-  }
 
   const handleExportToPDFClick = () => {
-
+    setIsDownloading(true);
+    const capture = document.querySelector('#export-content');
+    html2canvas(capture).then((canvas) => {
+      const imgData = canvas.toDataURL('img/png');
+      const doc = new jsPDF('p', 'mm', 'a4', true);
+      const contentWidth = doc.internal.pageSize.getWidth();
+      const contentHeight = doc.internal.pageSize.getHeight();
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = Math.min(contentWidth / imgWidth, contentHeight / imgHeight);
+      const imgX = (contentWidth - imgWidth * ratio) / 2;
+      const imgY = 5;
+      doc.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+      doc.save(`${documentName}.pdf`);
+      setIsDownloading(false);
+    })
   }
-
-  const handleExportToHTMLClick = () => {
-
-  }
-
 
   return (
-    <div className="relative">
-      <button ref={buttonRef} className="font-custom btn rounded-md px-2 py-1 font-thin text-sm text-[#ffffff] bg-[#38404d] hover:bg-[#4c5769]" onClick={handleExportBtnClick}>EXPORT AS</button>
-      <div className={`p-2 bg-base-100 w-28 mt-1 absolute flex flex-col gap-2 rounded ${isFocused ? 'block' : 'hidden'}`}>
-        <button className="py-2 px-1 font-custom text-[#ffffff] hover:bg-[#2d3c51] font-normal text-sm rounded-sm text-left">PDF</button>
-        <button className="py-2 px-1 font-custom text-[#ffffff] hover:bg-[#2d3c51] font-normal text-sm rounded-sm text-left">HTML</button>
-      </div>
-    </div>
+    <button className="font-custom btn rounded-md px-2 py-1 font-thin text-sm text-[#ffffff] bg-[#38404d] hover:bg-[#4c5769]" onClick={handleExportToPDFClick}>{isDownloading ? 'DOWNLOADING' : 'EXPORT TO PDF'}</button>
   );
 }
