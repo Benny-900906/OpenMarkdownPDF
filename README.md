@@ -5,6 +5,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Technologies](#technologies)
+- [Dependencies](#dependencies)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -25,9 +26,14 @@ Convert your plain text documents written in Markdown format into professionally
 
 ## Technologies
 
-- **React**: A JavaScript library for building user interfaces.
+- **React.js**: A JavaScript library for building user interfaces.
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
-- **[Other Dependencies](): List any additional libraries, tools, or dependencies you've used in your project.
+- **Zustand**: A state management library for React that provides a more simple and flexible way to manage the state of the application compared to Redux.
+
+## Dependencies
+
+- **jsPDF**: A popular JavaScript library for generating PDF documents in web applications.
+- **html2canvas**: A JavaScript library that allows you to capture and convert HTML elements and the content of a web page into an image or a canvas.
 
 ## Getting Started
 
