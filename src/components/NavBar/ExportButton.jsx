@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRenderedContentStore } from '../../stores/useRenderedContentStore';
+import { useDocumentNameStore } from '../../stores/useDocumentNameStore';
 
 export const ExportButton = () => {
   const [isFocused, setIsFocused] = useState(false);
-  const renderedContent = useRenderedContentStore((state) => state.renderedContent);
+  // documentName: for export the document
+  const documentName = useDocumentNameStore((state) => state.documentName);
   const buttonRef = useRef(null);
 
   // close the export options when clicking outside the `EXPORT AS` button 
