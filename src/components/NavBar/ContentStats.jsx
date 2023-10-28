@@ -5,9 +5,11 @@ import { useCharCount } from '../../hooks/useCharCount';
 
 export const ContentStats = () => {
   const markdownContent = useMarkdownContentStore((state) => state.markdownContent);
-  const readingTime = useReadingTime(markdownContent);
-  const wordCount = useWordCount(markdownContent);
-  const charCount = useCharCount(markdownContent);
+  const markdownPrefixes = useMarkdownContentStore((state) => state.markdownPrefixes);
+  const markdownCharacters = useMarkdownContentStore((state) => state.markdownCharacters);
+  const readingTime = useReadingTime(markdownContent, markdownPrefixes);
+  const wordCount = useWordCount(markdownContent, markdownPrefixes);
+  const charCount = useCharCount(markdownContent, markdownCharacters);
 
   return (
     <div className="w-[15%] flex flex-wrap gap-3">
