@@ -20,7 +20,6 @@ Convert your plain text documents written in Markdown format into professionally
 ## Features
 
 - **Markdown to PDF Conversion**: Convert Markdown text to PDF documents.
-- **Custom Styling**: Apply custom styles using Tailwind CSS to control the appearance of your PDF.
 - **Preview**: Real-time preview of the PDF document while editing the Markdown content.
 - **Export**: Download the generated PDF for offline use.
 
