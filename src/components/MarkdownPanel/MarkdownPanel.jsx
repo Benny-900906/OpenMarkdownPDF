@@ -1,6 +1,7 @@
 import { LineNumber } from './LineNumber';
 import { useState } from 'react';
 import { useMarkdownContentStore } from '../../stores/useMarkdownContentStore';
+import { MarkdownTag } from './MarkdownTag'
 
 export const MarkdownPanel = () => {
   const [scrollTop, setScrollTop] = useState(0);
@@ -17,7 +18,7 @@ export const MarkdownPanel = () => {
 
   return (
     <div className="w-[50%] h-full overflow-y-hidden flex flex-col">
-      <span className="font-custom block w-full px-3 py-2 text-[#000000] border text-xs font-thin">MARKDOWN</span>
+      <MarkdownTag />
       <div className="w-full h-full overflow-y-hidden flex flex-row">
         <LineNumber content={markdownContent} scrollTop={scrollTop} />
         <textarea

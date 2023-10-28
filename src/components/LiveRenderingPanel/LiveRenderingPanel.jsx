@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useMarkdownContentStore } from '../../stores/useMarkdownContentStore';
 import { useMarkdownToHTML } from '../../hooks/useMarkdownToHTML';
+import { PreviewTag } from './PreviewTag';
+
 
 export const LiveRenderingPanel = () => {
   const [renderedContent, setRenderedContent] = useState([]);
@@ -13,7 +15,7 @@ export const LiveRenderingPanel = () => {
 
   return (
     <div className="w-[50%] h-full overflow-y-hidden flex flex-col">
-      <span className="font-custom block w-full px-3 py-2 text-[#000000] border text-xs font-thin text-right">PREVIEW</span>
+      <PreviewTag />
       <div className="w-full h-full px-2 overflow-y-scroll" id="export-content">
         {renderedContent}
       </div>
