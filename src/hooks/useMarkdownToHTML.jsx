@@ -82,7 +82,7 @@ export const useMarkdownToHTML = (markdown) => {
       }
       // ******************************** COMMAND LINE HANDLING ************************
 
-      
+
       if (line.startsWith('# ')) {
 
         // heading 1
@@ -148,7 +148,7 @@ export const useMarkdownToHTML = (markdown) => {
         html = <li className='font-custom text-black font-extralight text-base' key={nanoid()}>{ text }</li>;
         listItems.push(html);
 
-        // we push to listItems not result
+        // we push to listItems instead of result
         doNotPushToResult = true;
 
       } else {

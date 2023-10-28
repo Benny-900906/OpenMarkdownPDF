@@ -3,6 +3,8 @@ import { useRenderedContentStore } from '../../stores/useRenderedContentStore';
 import { useReadingTime } from '../../hooks/useReadingTime';
 import { useWordCount } from '../../hooks/useWordCount';
 import { useCharCount } from '../../hooks/useCharCount';
+import { Logo } from './Logo'
+import { ExportButton } from './ExportButton';
 
 export const NavBar = () => {
 
@@ -24,17 +26,8 @@ export const NavBar = () => {
     <>
      <div className="w-full absolute">
       <div className="w-full bg-[#465162] flex flex-row justify-between px-16 py-5">
-        {/* logo */}
-        <span className="font-custom text-[#ffffff] font-bold">GENERATR</span>
-        {/* export options */}
-        {/* turn this button into a functional component */}
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="font-custom btn m-1 font-thin text-sm text-[#a8a8a8]">EXPORT AS</label>
-          <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 hidden">
-            <li><a>HTML</a></li>
-            <li><a>PDF</a></li>
-          </ul>
-        </div>
+        <Logo />
+        <ExportButton />
       </div>
 
       <div className="w-full bg-[#ffffff] flex flex-row justify-between px-3 py-4 gap-2">
