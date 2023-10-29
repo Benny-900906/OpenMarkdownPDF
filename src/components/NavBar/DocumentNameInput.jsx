@@ -10,7 +10,7 @@ export const DocumentNameInput = () => {
   }
 
   return (
-    <div className="w-[75%] flex flex-col">
+    <div className="sm:w-[50%] md:w-[70%] lg:w-[75%] flex flex-col">
       <span className="font-custom text-[#000000] text-sm font-thin px-2">DOCUMENT NAME</span>
       <input 
         placeholder="untitled"

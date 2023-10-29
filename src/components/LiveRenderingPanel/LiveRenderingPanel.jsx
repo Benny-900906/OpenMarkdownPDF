@@ -14,7 +14,7 @@ export const LiveRenderingPanel = () => {
   }, [ tempRenderedContent ])
 
   return (
-    <div className="w-[50%] h-full overflow-y-hidden flex flex-col">
+    <div className="w-[50%] h-full overflow-y-hidden hidden md:flex flex-col">
       <PreviewTag />
       <div className="w-full h-full px-2 overflow-y-scroll" id="export-content">
         {renderedContent}

@@ -17,7 +17,7 @@ export const MarkdownPanel = () => {
   }
 
   return (
-    <div className="w-[50%] h-full overflow-y-hidden flex flex-col">
+    <div className="w-full md:w-[50%] h-full overflow-y-hidden flex flex-col">
       <MarkdownTag />
       <div className="w-full h-full overflow-y-hidden flex flex-row">
         <LineNumber content={markdownContent} scrollTop={scrollTop} />
