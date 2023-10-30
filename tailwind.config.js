@@ -2,7 +2,7 @@
 export default {
   content: [
     './src/**/*.html',      // Include HTML files
-    './src/**/*.jsx',       // Include JSX files
+    './src/**/*.tsx',       // Include TSX files
     // Add more file types as needed
   ],
   theme: {

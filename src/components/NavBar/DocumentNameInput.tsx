@@ -1,11 +1,11 @@
 import { useDocumentNameStore } from '../../stores/useDocumentNameStore';
 
-export const DocumentNameInput = () => {
+export const DocumentNameInput = () : JSX.Element => {
 
-  const documentName = useDocumentNameStore((state) => state.documentName);
-  const setDocumentName = useDocumentNameStore((state) => state.setDocumentName);
+  const documentName : string = useDocumentNameStore((state) => state.documentName);
+  const setDocumentName : (filename : string) => void = useDocumentNameStore((state) => state.setDocumentName);
 
-  const handleDocNameChange = (e) => {
+  const handleDocNameChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     setDocumentName(e.target.value);
   }
 

@@ -13,7 +13,7 @@
 
 ## Introduction
 
-**Markdown PDF Generator** is a web application that allows users to create PDF documents from Markdown text. This project is built using React, Tailwind CSS, and other web technologies.
+**Markdown PDF Generator** is a web application that allows users to create PDF documents from Markdown text. This project is built using React, TypeScript, Tailwind CSS, and other web technologies.
 
 Convert your plain text documents written in Markdown format into professionally formatted PDF files with ease. Whether you need to create reports, documentation, or printable content, this tool simplifies the process.
 

@@ -3,11 +3,10 @@ import { useMarkdownContentStore } from '../../stores/useMarkdownContentStore';
 import { useMarkdownToHTML } from '../../hooks/useMarkdownToHTML';
 import { PreviewTag } from './PreviewTag';
 
-
-export const LiveRenderingPanel = () => {
-  const [renderedContent, setRenderedContent] = useState([]);
-  const markdownContent = useMarkdownContentStore((state) => state.markdownContent);
-  const tempRenderedContent = useMarkdownToHTML(markdownContent);
+export const LiveRenderingPanel = () : JSX.Element => {
+  const [renderedContent, setRenderedContent] = useState<JSX.Element[]>([]);
+  const markdownContent : string = useMarkdownContentStore((state) => state.markdownContent);
+  const tempRenderedContent : JSX.Element[] = useMarkdownToHTML(markdownContent);
 
   useEffect(() => {
     setRenderedContent(tempRenderedContent);

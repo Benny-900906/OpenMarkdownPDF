@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
-export const useMarkdownToHTML = (markdown) => {
-  const [renderedContent, setRenderedContent] = useState([]);
+export const useMarkdownToHTML = (markdown : string) : JSX.Element[] => {
+  const [renderedContent, setRenderedContent] = useState<JSX.Element[]>([]);
 
   // Check if a line consists of only white spaces
-  const isWhiteSpace = (line) => {
+  const isWhiteSpace = (line : string) => {
     for (let i = 0; i < line.length; i++) {
       if (line[i] !== ' ' && line[i] !== '\t' && line[i] !== '\n' && line[i] !== '\r') {
         return false; // The line contains a non-white space character
@@ -19,35 +19,31 @@ export const useMarkdownToHTML = (markdown) => {
   useEffect(() => {
 
     const lines = markdown.split('\n');
-    let result = [];
-    let text = '';
-    let html = <></>;
+    let result : JSX.Element[] = [];
+    let text : string = '';
+    let html : JSX.Element = <></>;
 
     // for list handling
-    let listItems = null;
-    let moreListItems = false;
+    let listItems : JSX.Element[] = [];
+    let moreListItems : boolean = false;
 
     // for command line handling
-    let commandItems = null;
-    let moreCommandItems = false;
+    let commandItems : JSX.Element[] = [];
+    let moreCommandItems : boolean = false;
 
-    let doNotPushToResult = false;
+    let doNotPushToResult : boolean = false;
 
     lines.forEach(line => {
 
       // ******************************** LIST HANDLING ********************************
       moreListItems = (line.startsWith('- ')) ? true : false;
 
-      if (moreListItems && listItems === null) {
-        listItems = [];
-
-      // no more list items to be added, and there's a few items in the list
-      // we now push em and make them into an <ul>
-      } else if (!moreListItems && listItems !== null) {
+      if (!moreListItems && listItems.length !== 0) {
         // push ul into result
-        const unorderedList = <ul>{ listItems }</ul>;
+        const unorderedList : JSX.Element = <ul>{ listItems }</ul>;
         result.push(unorderedList);
-        listItems = null;
+        // reset listItems
+        listItems = [];
       } 
       // ******************************** LIST HANDLING ********************************
 
@@ -59,12 +55,11 @@ export const useMarkdownToHTML = (markdown) => {
       }
 
       // read the first ```, start reading all the command line texts
-      if (moreCommandItems && commandItems === null) {
-        commandItems = [];
+      if (moreCommandItems && line.startsWith('```')) {
         doNotPushToResult = true;
 
       // read the second ```, done reading all the code texts
-      } else if (!moreCommandItems && commandItems !== null) {
+      } else if (!moreCommandItems && commandItems.length !== 0) {
         html = 
           <div className='bg-[#e9e9e9] px-2 py-1 rounded-lg border-2 border-[#c0c0c0]'>
             { commandItems }
@@ -72,13 +67,13 @@ export const useMarkdownToHTML = (markdown) => {
         result.push(html);
         doNotPushToResult = true;
         // reset commandItems list to null
-        commandItems = null;
+        commandItems = [];
 
       // continue reading the command line texts
-      } else if (moreCommandItems && commandItems !== null) {
+      } else if (moreCommandItems) {
         html = isWhiteSpace(line) ? <br /> : <code key={nanoid()} className='block text-[#535353] font-normal text-sm'>{`$ ${line}`}</code>;
         commandItems?.push(html)
-        doNotPushToResult = true; 
+        doNotPushToResult = true;
       }
       // ******************************** COMMAND LINE HANDLING ************************
 

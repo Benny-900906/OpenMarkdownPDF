@@ -3,17 +3,17 @@ import { useState } from 'react';
 import { useMarkdownContentStore } from '../../stores/useMarkdownContentStore';
 import { MarkdownTag } from './MarkdownTag'
 
-export const MarkdownPanel = () => {
-  const [scrollTop, setScrollTop] = useState(0);
-  const markdownContent = useMarkdownContentStore((state) => state.markdownContent);
-  const setMarkdownContent = useMarkdownContentStore((state) => state.setMarkdownContent);
+export const MarkdownPanel = () : JSX.Element => {
+  const [scrollTop, setScrollTop] = useState<number>(0);
+  const markdownContent : string = useMarkdownContentStore((state) => state.markdownContent);
+  const setMarkdownContent : (content : string) => void = useMarkdownContentStore((state) => state.setMarkdownContent);
 
-  const handleMarkdownChange = (e) => {
+  const handleMarkdownChange = (e : React.ChangeEvent<HTMLTextAreaElement>) => {
     setMarkdownContent(e.target.value);
   }
 
-  const handleTextareaScroll = (e) => {
-    setScrollTop(e.target.scrollTop);
+  const handleTextareaScroll = (e : React.UIEvent<HTMLTextAreaElement>) => {
+    setScrollTop(e.currentTarget.scrollTop);
   }
 
   return (
