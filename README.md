@@ -11,7 +11,7 @@
 
 ## Introduction
 
-**Markdown PDF Generator** is a web application that allows users to create PDF documents from Markdown text. This project is built using React, TypeScript, Tailwind CSS, and other web technologies.
+**Markdown PDF Generator** is a web application that allows users to create PDF documents from Markdown text. This project is built using React, Tailwind CSS, TypeScript, Zustand, React-Markdown, and Monaco-Editor.
 
 Convert your plain text documents written in Markdown format into professionally formatted PDF files with ease. Whether you need to create reports, documentation, or printable content, this tool simplifies the process.
 
@@ -26,6 +26,9 @@ Convert your plain text documents written in Markdown format into professionally
 - **React.js**: A JavaScript library for building user interfaces.
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
 - **Zustand**: A state management library for React that provides a more simple and flexible way to manage the state of the application compared to Redux.
+- **TypeScript**: A strongly typed superset of JavaScript that adds static typing to the language.
+- **React-Markdown**: A open-source library for rendering Markdown content as React components.
+- **Monaco-Editor**: A lightweight, fast code editor that's used by many development environments and online code editors.
 
 ## Dependencies
 
