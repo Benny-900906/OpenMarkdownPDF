@@ -2,6 +2,8 @@ import { create } from 'zustand';
 
 interface MarkdownContentState {
   markdownContent: string;
+  markdownPrefixes : string[];
+  markdownCharacters : string[];
   setMarkdownContent : (content : string) => void;
 }
 
@@ -67,5 +69,7 @@ You can view the source code [here](https://github.com/Benny-900906/markdown-pdf
 
 export const useMarkdownContentStore = create<MarkdownContentState>((set) => ({
   markdownContent: initialMarkdownContent,
+  markdownPrefixes: ['#', '##', '###', '-', '```'],
+  markdownCharacters: ['#', '-', '`'],
   setMarkdownContent: (content : string) => set({ markdownContent: content }),
 }));
