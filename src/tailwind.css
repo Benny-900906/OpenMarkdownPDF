@@ -10,7 +10,104 @@
 /* Add Kanit, Sans-serif font styles into Tailwind CSS */
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,400;0,600;1,200&display=swap');
 
-/* Normalize unordered list style */
+
+/* Heading styles */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #444;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Paragraph styles */
+p {
+  margin: 1em 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* List styles */
+ul, ol {
+  margin: 1em 0;
+  padding: 0 0 0 2em;
+}
+
 ul {
   list-style: inside;
+}
+
+ol {
+  list-style: decimal;
+}
+
+li {
+  margin: 0.25em 0;
+}
+
+/* Link styles */
+a {
+  text-decoration: underline;
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* Blockquote styles */
+blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 2px solid #007bff;
+  color: #666;
+  font-style: italic;
+}
+
+/* Code block styles */
+pre {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5em;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  color: #333;
+}
+
+/* Image styles */
+img {
+  max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Horizontal rule styles */
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+}
+
+/* Emphasis (italic) styles */
+em {
+  font-style: italic;
+}
+
+/* Strong (bold) styles */
+strong {
+  font-weight: bold;
+  color: #444;
 }

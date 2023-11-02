@@ -22,7 +22,7 @@ export const MarkdownPanel = () : JSX.Element => {
       <div className="w-full h-full overflow-y-hidden flex flex-row">
         <LineNumber content={markdownContent} scrollTop={scrollTop} />
         <textarea
-          className="resize-none w-full h-full focus:outline-none px-2 bg-[#1B1B1B] overflow-y-scroll"
+          className="resize-none w-full h-full focus:outline-none px-2 bg-[#1B1B1B] overflow-y-scroll text-markdownContent"
           value={markdownContent}
           onChange={handleMarkdownChange}
           onScroll={handleTextareaScroll}

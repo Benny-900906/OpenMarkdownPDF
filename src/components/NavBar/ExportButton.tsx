@@ -10,7 +10,7 @@ export const ExportButton = () : JSX.Element => {
 
   const handleExportToPDFClick = () => {
     setIsDownloading(true);
-    const capture : HTMLElement = document.querySelector('#export-content')!;
+    const capture : HTMLElement = document.querySelector('.export-content')!;
     html2canvas(capture).then((canvas) => {
       const imgData : string = canvas.toDataURL('img/png');
       const doc : jsPDF = new jsPDF('p', 'mm', 'a4', true);
@@ -28,6 +28,6 @@ export const ExportButton = () : JSX.Element => {
   }
 
   return (
-    <button className="font-custom btn rounded-md px-2 py-1 font-thin text-sm text-[#ffffff] bg-[#38404d] hover:bg-[#4c5769]" onClick={handleExportToPDFClick}>{isDownloading ? 'DOWNLOADING' : 'EXPORT TO PDF'}</button>
+    <button className="font-custom btn rounded-md px-2 py-1 font-thin text-sm text-[#ffffff] bg-[#38404d] hover:bg-[#4c5769]" onClick={handleExportToPDFClick}>{isDownloading ? 'DOWNLOADING' : 'EXPORT AS PDF'}</button>
   );
 }

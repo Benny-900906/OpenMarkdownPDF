@@ -10,7 +10,11 @@ export default {
       fontFamily : {
         // Access: font-custom
         custom: ['Kanit', 'sans-serif'],
-      }
+      },
+      colors: {
+        renderedContent: '#000000',
+        markdownContent: '#bcbcbc',
+      }     
     },
   },
   plugins: [
