@@ -1,4 +1,4 @@
-# Markdown PDF Generator
+# Open Markdown PDF
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@
 
 ## Introduction
 
-**Markdown PDF Generator** is a web application that allows users to create PDF documents from Markdown text. This project is built using React, Tailwind CSS, TypeScript, Zustand, React-Markdown, and Monaco-Editor.
+**Open Markdown PDF** is a web application that allows users to create PDF documents from Markdown text. This project is built using React, Tailwind CSS, TypeScript, Zustand, React-Markdown, and Monaco-Editor.
 
 Convert your plain text documents written in Markdown format into professionally formatted PDF files with ease. Whether you need to create reports, documentation, or printable content, this tool simplifies the process.
 
