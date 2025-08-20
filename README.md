@@ -32,7 +32,7 @@ Convert your plain text documents written in Markdown format into professionally
 
 ## Dependencies
 
-- **jsPDF**: A popular JavaScript library for generating PDF documents in web applications.
+- **pdf-lib**: A popular library for generating PDF documents in web applications.
 - **html2canvas**: A JavaScript library that allows you to capture and convert HTML elements and the content of a web page into an image or a canvas.
 
 ## Getting Started
