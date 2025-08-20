@@ -11,7 +11,7 @@ export const DocumentNameInput = () : JSX.Element => {
 
   return (
     <div className="sm:w-[50%] md:w-[70%] lg:w-[75%] flex flex-col">
-      <span className="font-custom text-[#000000] text-sm font-thin px-2">DOCUMENT NAME</span>
+      <span className="font-custom text-zinc-500 text-sm font-medium px-2">DOCUMENT NAME</span>
       <input 
         placeholder="untitled"
         className="font-custom p-2 outline-none text-[#000000] text-md font-normal bg-transparent"

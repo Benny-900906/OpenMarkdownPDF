@@ -8,8 +8,8 @@ export const MarkdownPanel = () : JSX.Element => {
   // markdownContent Setter
   const setMarkdownContent = useMarkdownContentStore((state) => state.setMarkdownContent);
 
-  const handleEditorChange = (value : string) => {
-    setMarkdownContent(value);
+  const handleEditorChange = (value : string | undefined) => {
+    setMarkdownContent(value!);
   }
 
   return (

@@ -4,7 +4,7 @@ import { NavBar } from '../components/NavBar/NavBar';
 
 export const Markdown = () => {
   return (
-    <div className="w-screen h-screen bg-[#000000] relative">
+    <div className="w-screen h-screen relative">
       <NavBar />
       <div className="w-full h-full bg-white flex flex-row pt-40">
         <MarkdownPanel />
